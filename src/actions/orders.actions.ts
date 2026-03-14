@@ -49,7 +49,12 @@ export async function createOrder(cartId: string, formValues: AddressPayloadType
             : `api/v1/orders/checkout-session/${cartId}?url=${process.env.NEXTAUTH_URL}`
 
         const token = await getUserToken()
-
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
         const resp = await fetch(`https://ecommerce.routemisr.com/${endpoint}`, {
             method: "POST",
             headers: {

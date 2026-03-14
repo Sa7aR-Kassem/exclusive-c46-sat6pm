@@ -10,6 +10,13 @@ export async function getUserCart() {
 
         const token = await getUserToken()
 
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
+
         const resp = await fetch(`https://ecommerce.routemisr.com/api/v2/cart`, {
             method: "GET",
             headers: {
@@ -45,6 +52,13 @@ export async function addToCart(productId: string) {
     try {
 
         const token = await getUserToken()
+
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
 
         const resp = await fetch(`https://ecommerce.routemisr.com/api/v2/cart`, {
             method: "POST",
@@ -83,6 +97,12 @@ export async function updateProductQty(productId: string, count: number) {
 
         const token = await getUserToken()
 
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
         const resp = await fetch(`https://ecommerce.routemisr.com/api/v2/cart/${productId}`, {
             method: "PUT",
             headers: {
@@ -125,6 +145,12 @@ export async function removeProduct(productId: string) {
 
         const token = await getUserToken()
 
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
         const resp = await fetch(`https://ecommerce.routemisr.com/api/v2/cart/${productId}`, {
             method: "DELETE",
             headers: {
@@ -166,6 +192,13 @@ export async function clearUserCart() {
 
         const token = await getUserToken()
 
+        if (!token) {
+            return {
+                message: "Please login first",
+                status: true
+            }
+        }
+        
         const resp = await fetch(`https://ecommerce.routemisr.com/api/v2/cart`, {
             method: "DELETE",
             headers: {
